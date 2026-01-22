@@ -2,139 +2,147 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz</title>
-  <link rel="stylesheet" href="fareez.css" />
+
+<style>
+/* ================= GENERAL ================= */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #550000, #0a0000);
+  color: #fff;
+  overflow-y: auto; /* ensures scrolling works */
+}
+
+/* DATE & TIME */
+#datetime {
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 0 0 6px rgba(255,215,0,0.7);
+  font-size: 18px;
+}
+
+/* MAIN PAPER */
+section {
+  max-width: 900px;
+  margin: 20px auto 40px auto;
+  padding: 35px;
+  background: linear-gradient(145deg, rgba(120,0,0,0.9), rgba(30,0,0,0.95));
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(255,215,0,0.3);
+}
+
+/* HEADINGS */
+h1, h3 {
+  text-align: center;
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255,215,0,0.6);
+}
+
+/* QUESTION BOX */
+.question {
+  margin: 30px 0;
+  padding: 22px;
+  border: 2px solid #ffd700;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.45);
+}
+
+/* OPTIONS */
+.options label {
+  display: block;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #aa0000;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.options label:hover {
+  background: rgba(255,215,0,0.15);
+  border-color: #ffd700;
+}
+
+.options input {
+  margin-right: 10px;
+}
+
+/* BUTTONS */
+button {
+  margin-top: 15px;
+  padding: 10px 22px;
+  border: none;
+  background: linear-gradient(135deg, #ffd700, #ffae00);
+  color: #400000;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255,215,0,0.6);
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255,215,0,0.9);
+}
+
+/* ANSWERS */
+.answer {
+  margin-top: 12px;
+  color: #00ff99;
+  display: none;
+  font-weight: bold;
+}
+
+.show {
+  display: block;
+}
+
+/* DIVIDER */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #ffd700, transparent);
+}
+</style>
 </head>
 
 <body>
-<nav>
-  <div class="logo"><img src="logo.png" class="logo-img" alt="SciWorld Logo"></div>
-  <a href="index.html">HOME</a>
-  <div class="dropdown">
-    <a href="#">CHAPTERS ▾</a>
-    <div class="dropdown-content">
-      <a href="chapter1.html">Chapter 1</a>
-      <a href="chapter2.html">Chapter 2</a>
-      <a href="chapter3.html">Chapter 3</a>
-      <a href="chapter4.html">Chapter 4</a>
-      <a href="chapter5.html">Chapter 5</a>
-      <a href="chapter6.html">Chapter 6</a>
-      <a href="chapter7.html">Chapter 7</a>
-      <a href="chapter8.html">Chapter 8</a>
-    </div>
-  </div>
-  <a href="quiz.html">QUIZ</a>
-  <a href="about.html">ABOUT US</a>
 
 <!-- DATE & TIME -->
 <div id="datetime"></div>
 
 <section>
-<h1>Quiz 🧪</h1>
-<h3>Answer ALL questions</h3>
+  <h1>Quiz 🧪</h1>
+  <h3>Answer ALL questions</h3>
 
-<div id="quiz"></div>
+  <div id="quiz"></div>
 
-<hr>
+  <hr>
 
-<div style="text-align:center;">
-  <button onclick="showAllAnswers()">SHOW ALL ANSWERS</button>
-</div>
-
+  <div style="text-align:center;">
+    <button onclick="showAllAnswers()">SHOW ALL ANSWERS</button>
+  </div>
 </section>
 
 <script>
 const questions = [
-  {
-    q: "Which type of lens is known as a converging lens?",
-    options: ["Concave lens", "Convex lens", "Cylindrical lens", "Light tube"],
-    answer: 1
-  },
-  {
-    q: "Carbon handprint refers to",
-    options: [
-      "Amount of carbon produced by industries",
-      "Negative environmental impacts",
-      "Actions taken to reduce carbon footprint",
-      "Measurement of air pollution"
-    ],
-    answer: 2
-  },
-  {
-    q: "What does BOD measure?",
-    options: [
-      "Carbon dioxide in air",
-      "Oxygen needed to decompose organic matter",
-      "Heavy metals in water",
-      "Water temperature"
-    ],
-    answer: 1
-  },
-  {
-    q: "Electrochemistry is the study of",
-    options: [
-      "Heat energy and matter",
-      "Electrical energy and motion",
-      "Relationship between chemical and electrical energy",
-      "Light energy and atoms"
-    ],
-    answer: 2
-  },
-  {
-    q: "Which of the following is NOT a microorganism?",
-    options: ["Bacteria", "Virus", "Fungi", "Insect"],
-    answer: 3
-  },
-  {
-    q: "Which is an example of negative emission technology?",
-    options: [
-      "Burning fossil fuels",
-      "Open dumping",
-      "Carbon capture and storage",
-      "Acid rain"
-    ],
-    answer: 2
-  },
-  {
-    q: "Why are microplastics dangerous in the food chain?",
-    options: [
-      "They dissolve easily in water",
-      "They reduce oxygen levels",
-      "They accumulate toxic substances",
-      "They increase soil fertility"
-    ],
-    answer: 2
-  },
-  {
-    q: "An electrolytic cell converts",
-    options: [
-      "Chemical to electrical energy",
-      "Electrical to chemical energy",
-      "Heat to electrical energy",
-      "Light to chemical energy"
-    ],
-    answer: 1
-  },
-  {
-    q: "What is meant by the product life cycle?",
-    options: [
-      "Time taken to manufacture",
-      "Stages from raw material to disposal",
-      "Durability of product",
-      "Cost of production"
-    ],
-    answer: 1
-  },
-  {
-    q: "What does a high Water Pollution Index indicate?",
-    options: [
-      "Clean water",
-      "Safe drinking water",
-      "Polluted water",
-      "High oxygen content"
-    ],
-    answer: 2
-  }
+  { q: "Which type of lens is known as a converging lens?", options: ["Concave lens", "Convex lens", "Cylindrical lens", "Light tube"], answer: 1 },
+  { q: "Carbon handprint refers to", options: ["Amount of carbon produced by industries","Negative environmental impacts","Actions taken to reduce carbon footprint","Measurement of air pollution"], answer: 2 },
+  { q: "What does BOD measure?", options: ["Carbon dioxide in air","Oxygen needed to decompose organic matter","Heavy metals in water","Water temperature"], answer: 1 },
+  { q: "Electrochemistry is the study of", options: ["Heat energy and matter","Electrical energy and motion","Relationship between chemical and electrical energy","Light energy and atoms"], answer: 2 },
+  { q: "Which of the following is NOT a microorganism?", options: ["Bacteria","Virus","Fungi","Insect"], answer: 3 },
+  { q: "Which is an example of negative emission technology?", options: ["Burning fossil fuels","Open dumping","Carbon capture and storage","Acid rain"], answer: 2 },
+  { q: "Why are microplastics dangerous in the food chain?", options: ["They dissolve easily in water","They reduce oxygen levels","They accumulate toxic substances","They increase soil fertility"], answer: 2 },
+  { q: "An electrolytic cell converts", options: ["Chemical to electrical energy","Electrical to chemical energy","Heat to electrical energy","Light to chemical energy"], answer: 1 },
+  { q: "What is meant by the product life cycle?", options: ["Time taken to manufacture","Stages from raw material to disposal","Durability of product","Cost of production"], answer: 1 },
+  { q: "What does a high Water Pollution Index indicate?", options: ["Clean water","Safe drinking water","Polluted water","High oxygen content"], answer: 2 }
 ];
 
 questions.sort(() => Math.random() - 0.5);
@@ -167,10 +175,8 @@ questions.forEach((item, index) => {
 function showAllAnswers() {
   document.querySelectorAll('.answer').forEach(a => a.classList.add('show'));
 }
-</script>
 
-<!-- DATE & TIME SCRIPT -->
-<script>
+// ================= DATE & TIME =================
 function updateDateTime() {
   const dt = new Date();
   const formatted = dt.toLocaleString('en-GB', { hour12: false });
@@ -182,5 +188,3 @@ updateDateTime();
 
 </body>
 </html>
-
-
